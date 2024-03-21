@@ -1,9 +1,10 @@
 import './App.css';
+import Reducer from './component/Reducer';
 
 function App() {
   return (
     <>
-      APP
+      <Reducer />
     </>
   );
 }
