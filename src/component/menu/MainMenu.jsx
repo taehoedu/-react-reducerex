@@ -6,7 +6,7 @@ const reducer_submenu = (state, action) => {
 
     switch(action.type) {
         case 'add_submenu':
-            return [...state, 'SubMenu' + state.length];
+            return [...state, action.subMenuName];
             
         case 'up':
             if (action.idx > 0) {
@@ -38,9 +38,25 @@ const reducer_submenu = (state, action) => {
 
 }
 
+const reducer_menu_name = (state, action) => {
+    console.log('reducer_menu_name()');
+
+    switch(action.type) {
+        case 'change_menu_name':
+            return action.menu_name;
+        case 'init':
+            return '';
+        default:
+            return state;
+
+    }
+
+}
+
 function MainMenu({mainmenu}) {
 
     const [submenus, dispatch_submenu] = useReducer(reducer_submenu, []);
+    const [subMenuName, dispatch_menu_name] = useReducer(reducer_menu_name, '');
 
     return(
         <>
@@ -49,9 +65,19 @@ function MainMenu({mainmenu}) {
             {
                 submenus.map((submenu, idx) => <SubMenu submenu={submenu} dispatch_submenu={dispatch_submenu} idx={idx} key={idx} />)
             }
+            <input type="text" onChange={(e) => {
+                dispatch_menu_name({
+                    type: 'change_menu_name',
+                    menu_name: e.target.value,
+                });
+            }} value={subMenuName}/>
             <button onClick={() => {
                 dispatch_submenu({
                     type: 'add_submenu',
+                    subMenuName,
+                });
+                dispatch_menu_name({
+                    type: 'init',
                 });
             }}>Add SubMenu</button><br /><br />
         </>

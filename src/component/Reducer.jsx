@@ -26,7 +26,7 @@ const reducer_number = (state, action) => {
 
         case 'reset_zero':
             return action.value;
-
+        
         default:
             return state;
             
@@ -69,9 +69,9 @@ function Reducer() {
 
     return(
         <>
-            <input type="number" onChange={dispatch_result} value={result} />
+            <input type="number" readOnly value={result} />
             <br /><br />
-            <input type="number" onChange={dispatch_number} value={number}/>
+            <input type="number" readOnly value={number}/>
             <button onClick={() => {
                 dispatch_number({
                     type: 'increase',

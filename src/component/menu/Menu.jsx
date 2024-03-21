@@ -7,8 +7,25 @@ const reducer_mainmenu = (state, action) => {
 
     switch(action.type) {
         case 'add_mainmenu':
-            return [...state, 'MainMenu' + state.length];
-            
+            return [...state, action.mainMenuName];
+
+        default:
+            return state;
+
+    }
+
+}
+
+const reducer_menu_name = (state, action) => {
+    console.log('reducer_menu_name()');
+
+    switch(action.type) {
+        case 'change_menu_name':
+            return action.menu_name;
+        
+        case 'init':
+            return '';
+
         default:
             return state;
 
@@ -20,6 +37,7 @@ function Menu() {
 
     // hook
     const [mainmenus, dispatch_add_menu] = useReducer(reducer_mainmenu, []);
+    const [mainMenuName, dispatch_menu_name] = useReducer(reducer_menu_name, '');
 
     return(
         <>
@@ -27,10 +45,18 @@ function Menu() {
             {
                 mainmenus.map((mainmenu, idx) => <MainMenu mainmenu={mainmenu} key={idx} />)
             }
-            <button onClick={() => {
+            <input type="text" onChange={(e) => {
+                dispatch_menu_name({
+                    type: 'change_menu_name',
+                    menu_name: e.target.value,
+                });
+            }} value={mainMenuName}/><button onClick={() => {
                 dispatch_add_menu({
                     type: 'add_mainmenu',
-        
+                    mainMenuName,
+                });
+                dispatch_menu_name({
+                    type: 'init',
                 });
             }}>Add MainMenu</button>
         </>
