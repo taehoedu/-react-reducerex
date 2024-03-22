@@ -70,8 +70,15 @@ function MainMenu({mainmenu}) {
                     type: 'change_menu_name',
                     menu_name: e.target.value,
                 });
-            }} value={subMenuName}/>
+            }} value={subMenuName} placeholder="INPUT NEW SUBMENU" />
             <button onClick={() => {
+                if (subMenuName.trim() === '') {
+                    alert('INPUT NEW SUBMENU NAME!!');
+                    dispatch_menu_name({
+                        type: 'init',
+                    });
+                    return;
+                }
                 dispatch_submenu({
                     type: 'add_submenu',
                     subMenuName,

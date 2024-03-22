@@ -50,7 +50,15 @@ function Menu() {
                     type: 'change_menu_name',
                     menu_name: e.target.value,
                 });
-            }} value={mainMenuName}/><button onClick={() => {
+            }} value={mainMenuName} placeholder="INPUT NEW MAINMENU"/>
+            <button onClick={() => {
+                if (mainMenuName.trim() === '') {
+                    alert('INPUT NEW MAINMENU NAME!!');
+                    dispatch_menu_name({
+                        type: 'init',
+                    });
+                    return;
+                }
                 dispatch_add_menu({
                     type: 'add_mainmenu',
                     mainMenuName,
