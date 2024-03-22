@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import '../..//css/menu.css';
+import '../../css/menu.css';
 import MainMenu from "./MainMenu";
 
 const reducer_mainmenu = (state, action) => {

@@ -4,12 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Menu from './component/menu/Menu';
+import Member from './component/member/Member';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     // <App />
-    <Menu />
+    // <Menu />
+    <Member />
   // </React.StrictMode>
 );
 
