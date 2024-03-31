@@ -19,11 +19,11 @@ const MemberRow = ({member, dispatch_members}) => {
         setMMail(member.mMail);
         setMPhone(member.mPhone);
 
-    }, []);
+    }, [member]);
 
     return(
         <>
-            <input className="member" type="text" value={mNo} readOnly />
+            <input className="member" style={{width: '150px'}}type="text" value={mNo} readOnly />
             <input className="member" type="text" onChange={(e) => {setMName(e.target.value)}} value={mName} />
             <button onClick={() => {
                 dispatch_members({

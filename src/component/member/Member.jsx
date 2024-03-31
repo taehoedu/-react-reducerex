@@ -14,37 +14,31 @@ const reducer_members = (state, action) => {
     } else if (action.type === 'MODIFY_MEMBER_NAME') {
 
         state[action.mNo]['mName'] = action.modifyMemerName;
-
         return {...state};
 
     } else if (action.type === 'MODIFY_MEMBER_GENDER') {
 
         state[action.mNo]['mGender'] = action.modifyMemerGender;
-
         return {...state};
 
     } else if (action.type === 'MODIFY_MEMBER_AGE') {
 
         state[action.mNo]['mAge'] = action.modifyMemerAge;
-
         return {...state};
 
     } else if (action.type === 'MODIFY_MEMBER_MAIL') {
 
         state[action.mNo]['mMail'] = action.modifyMemerMail;
-
         return {...state};
 
     } else if (action.type === 'MODIFY_MEMBER_PHONE') {
 
         state[action.mNo]['mPhone'] = action.modifyMemerPhone;
-
         return {...state};
 
     } else if (action.type === 'DELETE_MEMBER') {
 
         delete state[action.mNo];
-
         return {...state};
 
     } else {
@@ -55,8 +49,8 @@ const reducer_members = (state, action) => {
 }
 
 let sampleMembers = {
-    '2023220018433313': {
-        mNo: '2023220018433313',
+    '2023220018433111': {
+        mNo: '2023220018433111',
         mName: 'Hong gildong',
         mGender: 'W',
         mAge: 25,
@@ -113,7 +107,8 @@ function Member() {
 
             <h4>OUR SPORT CENTER MEMBERS</h4>
             {
-                Object.keys(members).map(mNo => members[mNo]).map((member, idx) => {
+                Object.keys(members).map((mNo, idx) => {
+                    let member = members[mNo];
                     return <MemberRow member={member} dispatch_members={dispatch_members} key={idx} />
                 })
             }
