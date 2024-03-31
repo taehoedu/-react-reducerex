@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../../css/member.css';
 
-const MemberRow = ({member}) => {
+const MemberRow = ({member, dispatch_members}) => {
 
     const [mNo, setMNo] = useState('');
     const [mName, setMName] = useState('');
@@ -25,15 +25,55 @@ const MemberRow = ({member}) => {
         <>
             <input className="member" type="text" value={mNo} readOnly />
             <input className="member" type="text" onChange={(e) => {setMName(e.target.value)}} value={mName} />
-            <button>MOD</button>
-            <input className="member" type="text" onChange={(e) => {setMGender(e.target.value)}} value={mGender} />
+            <button onClick={() => {
+                dispatch_members({
+                    type: 'MODIFY_MEMBER_NAME',
+                    mNo,
+                    modifyMemerName: mName,
+                })
+            }}>MOD</button>
+            <select name="mGender" value={mGender} onChange={(e) => {setMGender(e.target.value)}}>
+                <option value=''>-- SELECT GENDER --</option>
+                <option value='M'>M</option>
+                <option value='W'>W</option>
+            </select>
+            <button onClick={() => {
+                dispatch_members({
+                    type: 'MODIFY_MEMBER_GENDER',
+                    mNo,
+                    modifyMemerGender: mGender,
+                })
+            }}>MOD</button>
             <input className="member" type="number" onChange={(e) => {setMAge(e.target.value)}} value={mAge} />
-            <button>MOD</button>
+            <button onClick={() => {
+                dispatch_members({
+                    type: 'MODIFY_MEMBER_AGE',
+                    mNo,
+                    modifyMemerAge: mAge,
+                })
+            }}>MOD</button>
             <input className="member" type="text" onChange={(e) => {setMMail(e.target.value)}} value={mMail} />
-            <button>MOD</button>
+            <button onClick={() => {
+                dispatch_members({
+                    type: 'MODIFY_MEMBER_MAIL',
+                    mNo,
+                    modifyMemerMail: mMail,
+                })
+            }}>MOD</button>
             <input className="member" type="text" onChange={(e) => {setMPhone(e.target.value)}} value={mPhone} />
-            <button>MOD</button>
-            <button>DEL</button>
+            <button onClick={() => {
+                dispatch_members({
+                    type: 'MODIFY_MEMBER_PHONE',
+                    mNo,
+                    modifyMemerPhone: mPhone,
+                })
+            }}>MOD</button>
+            <button onClick={() => {
+                dispatch_members({
+                    type: 'DELETE_MEMBER',
+                    mNo,
+                })
+            }}>DEL</button>
             <br />
         </>
     );
